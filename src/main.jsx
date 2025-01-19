@@ -1,22 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Home from './pages/Home';  // Ensure this path is correct
-import About from './pages/About';
-import Contact from './pages/Contact';
-import Services from './pages/Services';
+import { BrowserRouter as Router } from 'react-router-dom';
+import App from './App';
 import './index.css';
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-  // ... other routes
-]);
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+function handleScroll() {
+  if (window.scrollY > 40) {
+    document.body.classList.add('scrolled');
+  } else {
+    document.body.classList.remove('scrolled');
+  }
+}
+
+window.addEventListener('scroll', handleScroll);
+
+root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Router>
+      <App />
+    </Router>
   </React.StrictMode>
 );
